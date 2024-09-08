@@ -21,14 +21,19 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    props.onAdd(note);
-    setNote({
-      title: "",
-      content: "",
-    });
-    setExpanded(false);
+    if (note.title.trim() !== "" || note.content.trim() !== "") {
+      props.onAdd(note);
+      setNote({
+        title: "",
+        content: "",
+      });
+      setExpanded(false);
+    } else {
+      alert("Note cannot be empty!");
+    }
     event.preventDefault();
   }
+  
   function expandNote() {
     setExpanded(true);
   }
